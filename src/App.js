@@ -4,6 +4,7 @@ import Header from './Header';
 import Content from './Content';
 import { useEffect, useState } from 'react';
 import AddItems from './AddItems';
+import Search from'./Search';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
 
         const[course2,setcourse2]=useState("")
         const[fees2,setfees2]=useState("")
+        const[search2,setsearch2]=useState("")
 
         function handlecreate(e){
           e.preventDefault()
@@ -57,6 +59,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Search search2={search2} setsearch2={setsearch2} />
       <AddItems 
       course2={course2}
       setcourse2={setcourse2}
@@ -65,8 +68,11 @@ function App() {
       handlecreate={handlecreate}
       />
       <Content 
-      my23={my}
+      // my23={my}
       handledelete={handledelete}
+      my23={my.filter((item) => item.course.toLowerCase().includes(search2.toLowerCase()))}
+
+
       />
     </div>
   );
